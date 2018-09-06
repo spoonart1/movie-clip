@@ -16,6 +16,7 @@ import com.spoonart.movieclip.feature.detail.DetailActivity
 import com.spoonart.movieclip.model.movie.BaseMovieResult
 import com.spoonart.movieclip.model.movie.MovieItem
 
+
 class MovieFragment() : BaseFragment<MoviePresenter>(), MovieContract.MovieView, MovieAdapter.OnMovieClickListener {
 
     private var contentView: View? = null
@@ -116,7 +117,7 @@ class MovieFragment() : BaseFragment<MoviePresenter>(), MovieContract.MovieView,
         presenter?.loadMovie(currentPage, type)
     }
 
-    override fun onClick(item: BaseMovieResult, position: Int) {
+    override fun onClick(view: View, item: BaseMovieResult, position: Int) {
         Intent(this.activity, DetailActivity::class.java).apply {
             putExtra("movie_id", item.id)
             startActivity(this)

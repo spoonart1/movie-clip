@@ -5,9 +5,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
+import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v4.view.ViewPager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -28,22 +30,24 @@ import kotlin.math.abs
 
 class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
 
-    lateinit var ivBackdrop: ImageView
-    lateinit var ivPoster: ImageView
-    lateinit var tvTitle: TextView
-    lateinit var tvRate: TextView
-    lateinit var tvVotes: TextView
-    lateinit var tvCalendar: TextView
-    lateinit var tvLang: TextView
-    lateinit var tvOverview: TextView
-    lateinit var viewPager: ViewPager
-    lateinit var indicator: CircleIndicator
-    lateinit var appBarLayout: AppBarLayout
+    private lateinit var rootLayout: View
+    private lateinit var ivBackdrop: ImageView
+    private lateinit var ivPoster: ImageView
+    private lateinit var tvTitle: TextView
+    private lateinit var tvRate: TextView
+    private lateinit var tvVotes: TextView
+    private lateinit var tvCalendar: TextView
+    private lateinit var tvLang: TextView
+    private lateinit var tvOverview: TextView
+    private lateinit var viewPager: ViewPager
+    private lateinit var indicator: CircleIndicator
+    private lateinit var appBarLayout: AppBarLayout
+    private lateinit var collapsingToolbarLayout: CollapsingToolbarLayout
 
-    var movieDetail: MovieDetail? = null
+    private var movieDetail: MovieDetail? = null
 
-    var responsePattern = "yyyy-MM-dd"
-    var desiredPattern = "yyyy MMMM dd"
+    private var responsePattern = "yyyy-MM-dd"
+    private var desiredPattern = "yyyy MMMM dd"
 
     override fun attachPresenter(): DetailPresenter {
         return DetailPresenter(this, this)
@@ -60,6 +64,7 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
         setupToolbar(R.id.toolbar, R.color.colorPrimary)
         setDisplayHome(true)
 
+        rootLayout = findViewById(R.id.root_layout)
         ivBackdrop = findViewById(R.id.backdrop)
         ivPoster = findViewById(R.id.iv_poster)
         tvTitle = findViewById(R.id.tv_title)
@@ -71,7 +76,9 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
         viewPager = findViewById(R.id.view_pager)
         indicator = findViewById(R.id.indicator)
         appBarLayout = findViewById(R.id.app_bar_layout)
+        collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar)
 
+        collapsingToolbarLayout.title = " "
         setAppBarLayoutListener()
     }
 
@@ -92,6 +99,17 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
             val currentOffset = abs(verticalOffset).toFloat()
             val opacity = 1 - (currentOffset / appBarLayout.totalScrollRange)
             ivPoster.alpha = opacity
+            setToolbarTitle(opacity)
+        }
+    }
+
+    private fun setToolbarTitle(opacity: Float) {
+        if (opacity <= 0.0) {
+            movieDetail?.let {
+                collapsingToolbarLayout.title = it.title
+            }
+        } else {
+            collapsingToolbarLayout.title = " "
         }
     }
 

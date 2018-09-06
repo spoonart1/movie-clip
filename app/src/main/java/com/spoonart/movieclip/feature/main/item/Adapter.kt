@@ -40,7 +40,7 @@ class MovieAdapter(var items: ArrayList<BaseMovieResult>, var favoriteByDefault:
 
     fun replaceAll(items: ArrayList<BaseMovieResult>) {
         this.items = items
-        if(favoriteByDefault){
+        if (favoriteByDefault) {
             setFavoriteCheckedByDefault()
         }
         notifyDataSetChanged()
@@ -48,7 +48,7 @@ class MovieAdapter(var items: ArrayList<BaseMovieResult>, var favoriteByDefault:
 
     fun addNewCollection(items: ArrayList<BaseMovieResult>) {
         this.items.addAll(items)
-        if(favoriteByDefault){
+        if (favoriteByDefault) {
             setFavoriteCheckedByDefault()
         }
         notifyDataSetChanged()
@@ -86,7 +86,7 @@ class MovieAdapter(var items: ArrayList<BaseMovieResult>, var favoriteByDefault:
             btnFav.isChecked = item.isFavorite
 
             itemView.setOnClickListener {
-                listener?.onClick(item, position)
+                listener?.onClick(itemView, item, position)
             }
 
             btnFav.setOnClickListener {
@@ -96,7 +96,7 @@ class MovieAdapter(var items: ArrayList<BaseMovieResult>, var favoriteByDefault:
     }
 
     interface OnMovieClickListener {
-        fun onClick(item: BaseMovieResult, position: Int)
+        fun onClick(view: View, item: BaseMovieResult, position: Int)
         fun onFavBtnClicked(item: BaseMovieResult, position: Int)
     }
 }
