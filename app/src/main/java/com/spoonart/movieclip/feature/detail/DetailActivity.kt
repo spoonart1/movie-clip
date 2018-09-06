@@ -142,10 +142,7 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
         sources.forEach {
             langs += "${it.iso639_1},".toUpperCase()
         }
-        if (langs.length > 0) {
-            langs.substring(langs.lastIndex, langs.lastIndex)
-        }
-        return langs
+        return langs.removeSuffix(",")
     }
 
     override fun onTrailerLoaded(trailer: MovieTrailer) {
