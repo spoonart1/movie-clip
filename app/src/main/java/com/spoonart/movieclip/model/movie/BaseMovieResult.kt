@@ -1,0 +1,49 @@
+package com.spoonart.movieclip.model.movie
+
+import com.google.gson.annotations.SerializedName
+
+open class BaseMovieResult {
+    @SerializedName("vote_count")
+    val voteCount: Int = 0
+
+    @SerializedName("id")
+    val id: Int = 0
+
+    @SerializedName("video")
+    val isVideo: Boolean = false
+
+    @SerializedName("vote_average")
+    val voteAverage: Double = 0.0
+
+    @SerializedName("title")
+    val title: String = ""
+
+    @SerializedName("popularity")
+    val popularity: Double = 0.0
+
+    @SerializedName("poster_path")
+    val posterPath: String? = null
+
+    @SerializedName("original_language")
+    val originalLanguage: String = ""
+
+    @SerializedName("original_title")
+    val originalTitle: String = ""
+
+    @SerializedName("genre_ids")
+    val genreIds: List<Int> = listOf()
+
+    @SerializedName("backdrop_path")
+    val backdropPath: String? = null
+
+    @SerializedName("adult")
+    val isAdult: Boolean = false
+
+    @SerializedName("overview")
+    val overview: String = ""
+
+    @SerializedName("release_date")
+    val releaseDate: String = ""
+
+    var isFavorite: Boolean = false
+}

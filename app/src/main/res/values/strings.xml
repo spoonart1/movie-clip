@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Movie Clip</string>
+
+    <string name="text_error_no_internet_connection">No internet connection!</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_ok">OK</string>
+    <string name="text_title_error">An Error Occured</string>
+    <string name="text_loading_progress">Please wait...</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque volutpat, diam a suscipit hendrerit, felis libero condimentum dolor, vel blandit nisi elit at nulla. Cras sapien urna, dapibus id mi at, condimentum pharetra nunc. Aliquam et mauris neque. Aliquam erat volutpat. Sed in diam sit amet orci iaculis tincidunt. Fusce consectetur tincidunt orci, ac porttitor diam hendrerit non. Ut nec turpis enim.</string>
+    <string name="text_share_title">Share Movie</string>
+    <string name="text_share_via_title">Share Via</string>
+</resources>
