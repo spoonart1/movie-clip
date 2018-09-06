@@ -61,6 +61,7 @@ class VideoItemFragment : Fragment() {
     private fun configPlayer() {
         val uiController = ytPlayerView.playerUIController
         uiController.setVideoTitle(title)
+        uiController.showBufferingProgress(true)
     }
 
 
